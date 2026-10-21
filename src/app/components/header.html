@@ -1,0 +1,40 @@
+<div id="scroll-progress" aria-hidden="true"
+     style="position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: var(--color-ink);"></div>
+
+<header
+  class="header"
+  [class.is-scrolled]="scrolled()"
+  [class.menu-open]="menuOpen()"
+>
+  <nav class="container-x flex h-[76px] items-center justify-between gap-4" aria-label="Navegación principal">
+    <a href="#inicio" class="flex items-center gap-3" (click)="closeMenu()">
+      <span class="grid size-10 shrink-0 place-items-center rounded-[12px] bg-ink font-display text-[.95rem] italic text-paper" aria-hidden="true">OM</span>
+      <span class="hidden leading-tight sm:block">
+        Omar Martínez
+        <small class="block text-[.72rem] uppercase tracking-[.08em] text-ink/70">&#64;alchemist.mar</small>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      (click)="toggleMenu()"
+      aria-controls="nav-panel"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+    >
+      <span></span><span></span>
+    </button>
+
+    <ul id="nav-panel" class="nav-panel items-center justify-center">
+      @for (l of links; track l.id) {
+        <li>
+          <a href="#{{ l.id }}" class="nav-a" [class.is-active]="isActive(l.id)" (click)="navigate(l.id)">{{ l.label }}</a>
+        </li>
+      }
+      <li>
+        <a href="#contacto" class="btn btn-ink h-11! px-5! text-[.9rem]! lg:ml-2.5" (click)="navigate('contacto')">Hablemos</a>
+      </li>
+    </ul>
+  </nav>
+</header>

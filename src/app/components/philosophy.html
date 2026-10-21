@@ -1,0 +1,28 @@
+<section id="filosofia" class="overflow-hidden py-16 md:py-24">
+  <div class="container-x grid items-stretch gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+    <div appReveal class="peach-card flex flex-col justify-between p-8 md:p-10">
+      <div>
+        <h2 class="h-sm text-[clamp(2rem,4.2vw,2.75rem)]">Escuchar, crear y <em class="italic">ejecutar</em></h2>
+        <blockquote class="mt-6 max-w-[52ch] text-[18px] font-430 leading-[1.6]">
+          Antes de proponer, entiendo el negocio, su gente y lo que quiere contar. Después busco la forma
+          más clara de decirlo: una imagen, una campaña o una pieza que la gente quiera ver.
+          Criterio, detalle y trabajo.
+        </blockquote>
+      </div>
+      <p class="mt-10 text-sm font-450">— Omar</p>
+    </div>
+
+    <div appReveal [appRevealDelay]="100" class="grid gap-4 sm:grid-cols-2">
+      @for (v of values; track v.title; let i = $index) {
+        <article class="card flex flex-col p-6 transition duration-500 hover:-translate-y-1"
+                 [style.transition-delay.ms]="i * 100">
+          <span class="grid size-10 place-items-center rounded-full bg-paper">
+            <app-icon [name]="v.icon" cls="size-5" />
+          </span>
+          <h3 class="mt-4 text-[20px] font-450 tracking-[-.009em]">{{ v.title }}</h3>
+          <p class="mt-1.5 text-[15px] leading-[1.55] text-ink/75">{{ v.desc }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

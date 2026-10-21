@@ -1,0 +1,52 @@
+<section id="sobre-mi" class="bg-fog py-16 md:py-24">
+  <div class="container-x grid items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+    <div appReveal class="relative mx-auto w-full max-w-[400px]">
+      <figure class="artifact rotate-[-1.5deg] p-2.5">
+        <img src="assets/img/about/omar.jpg" alt="Retrato de Omar" loading="lazy" decoding="async"
+             class="aspect-[4/5] w-full rounded-[12px] object-cover">
+        <figcaption class="figure-cap">León, Guanajuato</figcaption>
+      </figure>
+      <figure class="artifact absolute -left-3 bottom-10 w-[230px] rotate-[2deg] p-5">
+        <span class="h-sm block text-[24px]">Aprendiendo <em class="italic">haciendo</em></span>
+        <span class="mt-1 block text-[.8rem] text-ink/70">UTL · {{ profile.semester }}</span>
+        <span class="mt-2 block text-[.8rem] font-450">Buscando mi próximo equipo</span>
+      </figure>
+    </div>
+
+    <div appReveal [appRevealDelay]="100">
+      <h2 class="display-2 text-[clamp(2.25rem,5.5vw,4rem)]">Entre la idea y la <em class="italic">pantalla</em></h2>
+      <p class="mt-6 max-w-[62ch] text-[17px] leading-[1.65] text-ink/75">
+        Estudio negocios digitales, pero pienso en imágenes. Me gusta entender qué quiere contar una marca
+        y encontrar la forma de que se vea, se entienda y se recuerde.
+      </p>
+      <p class="mt-4 max-w-[62ch] text-[17px] leading-[1.65] text-ink/75">
+        Quiero aprender cómo trabaja un equipo por dentro y sumar con lo que ya sé. Mientras termino
+        la carrera, sigo probando en cada proyecto: una publicación, una sesión, un video.
+      </p>
+      <ul appReveal [appRevealDelay]="200" class="mt-8 flex flex-wrap gap-2.5" aria-label="Áreas de trabajo">
+        @for (p of pills; track p) {
+          <li class="rounded-full border border-line bg-paper px-4 py-2.5 text-sm transition hover:-translate-y-0.5 hover:border-smoke">
+            {{ p }}
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <!-- Formación académica -->
+  <div class="container-x mt-14 md:mt-20">
+    <section appReveal class="card p-7 md:p-9">
+      <div class="grid gap-7 md:grid-cols-[.9fr_1.1fr] md:gap-12">
+        <div>
+          <h3 class="h-sm text-[clamp(1.5rem,2.4vw,1.9rem)]"><em class="italic">Formación</em></h3>
+          <p class="mt-5 text-[17px] font-450 leading-[1.45] text-ink">{{ education.career }}</p>
+        </div>
+        <div class="md:border-l md:border-line md:pl-12">
+          <p class="text-[15px] font-450 text-ink">{{ education.school }}</p>
+          <p class="mt-1 text-sm text-ink/60 tnum">{{ education.when }}</p>
+          <p class="mt-3 max-w-[62ch] text-[.9rem] leading-[1.6] text-ink/70">{{ education.detail }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

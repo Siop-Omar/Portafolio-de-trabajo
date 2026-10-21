@@ -1,0 +1,63 @@
+<div (touchstart)="touchStart($event)" (touchend)="touchEnd($event)">
+
+  <div
+    class="lightbox"
+    (click)="onBackdrop($event)"
+    [class.is-open]="lb.isOpen()"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Visor de imágenes y videos"
+    [attr.aria-hidden]="!lb.isOpen()"
+  >
+    <div class="lb-top flex items-center justify-between px-[clamp(1.25rem,4vw,2.5rem)] py-4">
+      <span class="text-[.85rem] font-450 tracking-[.14em] text-smoke">
+        {{ lb.index() + 1 }} / {{ lb.items().length }}
+      </span>
+      <button #closeBtn type="button" class="lb-btn" aria-label="Cerrar visor" (click)="lb.close()">
+        <app-icon name="close" />
+      </button>
+    </div>
+
+    <div class="relative flex min-h-0 items-center justify-center px-[clamp(1rem,7vw,6rem)]">
+      @if (lb.items().length > 1) {
+        <button type="button" class="lb-btn lb-prev left-[clamp(.5rem,2vw,1.5rem)]" aria-label="Anterior" (click)="lb.go(-1)">
+          <app-icon name="left" />
+        </button>
+        <button type="button" class="lb-btn lb-next right-[clamp(.5rem,2vw,1.5rem)]" aria-label="Siguiente" (click)="lb.go(1)">
+          <app-icon name="right" />
+        </button>
+      }
+
+      <div data-lb-media class="lb-stage grid h-full w-full place-items-center py-4">
+        @if (renderMedia()) {
+          @if (lb.current(); as item) {
+            <div class="lb-media-anim flex flex-col items-center">
+              <!-- El elemento se reutiliza al navegar (cambia el src); una carga
+                   abortada no emite error y `videoFailed` se reinicia en el effect,
+                   así un fallo antiguo no corrompe el item nuevo. -->
+              @if (item.kind === "video" && !videoFailed()) {
+                <!-- src directo en <video>: con <source> el evento error
+                     se emitiría en el <source> y el fallback nunca llegaría. -->
+                <video [src]="item.src" controls autoplay playsinline preload="metadata"
+                       [poster]="item.poster || ''"
+                       (error)="onVideoError()"></video>
+              } @else {
+                <img [src]="item.poster || item.src" [alt]="item.alt" decoding="async"
+                     [class.object-contain]="item.contain">
+              }
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="min-h-[3.5rem] px-[clamp(1.25rem,4vw,2.5rem)] pb-6 pt-4 text-center text-[.92rem] text-white/85">
+      {{ lb.current()?.caption || "" }}
+      @if (videoFailed()) {
+        <span class="lb-msg mt-2 inline-block font-450">
+          Video próximamente — por ahora se muestra la miniatura.
+        </span>
+      }
+    </div>
+  </div>
+</div>

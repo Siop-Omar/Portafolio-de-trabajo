@@ -1,0 +1,69 @@
+<section id="inicio" class="overflow-hidden pt-[110px] pb-14 md:pt-[150px] md:pb-20">
+  <div class="container-x relative">
+
+    <!-- Artefactos flotantes alrededor del titular (pantallas grandes) -->
+    <div class="pointer-events-none absolute inset-0 z-[2] hidden lg:block">
+      <figure class="pointer-events-auto artifact absolute -left-1 top-[6%] w-[228px] rotate-[-2deg] p-2.5 transition-transform duration-500 hover:rotate-0">
+        <img [src]="imgs.main.src" [alt]="imgs.main.alt" decoding="async" fetchpriority="high" class="h-[280px] w-full rounded-[12px] object-cover" />
+        <figcaption class="figure-cap">Sesión de temporada · Conejo Fotografía</figcaption>
+      </figure>
+
+      <figure class="pointer-events-auto artifact absolute right-0 top-[38%] w-[228px] rotate-[2deg] p-2.5 transition-transform duration-500 hover:rotate-0">
+        <img [src]="imgs.logo.src" [alt]="imgs.logo.alt" decoding="async" class="h-[140px] w-full rounded-[12px] object-cover" />
+        <figcaption class="figure-cap">FunkoTown · identidad de marca</figcaption>
+      </figure>
+
+      @if (stat; as m) {
+        <figure class="pointer-events-auto artifact absolute bottom-[2%] left-[1%] w-[212px] rotate-[-1.5deg] p-5 transition-transform duration-500 hover:rotate-0">
+          <span class="tnum block font-450 text-[26px] tracking-[-.009em]"
+                [appCountUp]="m.value" [prefix]="m.prefix || ''" [suffix]="m.suffix || ''" [decimals]="m.decimals || 0">{{ m.display }}</span>
+          <span class="mt-1.5 block text-[.85rem] text-ink/70">{{ m.label }}</span>
+        </figure>
+      }
+    </div>
+
+    <div class="relative z-[1] mx-auto max-w-[860px] text-center">
+      <h1 class="display-1 text-[clamp(2.75rem,7.2vw,5.625rem)]">
+        <span class="h-line"><span class="inline-block">Portafolio</span></span>
+        <span class="h-line h-line--d2"><span class="inline-block"><em>de trabajo</em></span></span>
+      </h1>
+
+      <p class="fu d3 mx-auto mt-7 max-w-[58ch] text-[17px] leading-[1.65] text-ink/75">
+        Curso el <strong class="font-450 text-ink">{{ profile.semester }}</strong> de Ingeniería en Entornos Virtuales
+        y Negocios Digitales y estoy <strong class="font-450 text-ink">{{ profile.finishing }}</strong>.
+        Me muevo entre el marketing, la imagen y los datos: me gusta encontrar la historia de una marca
+        y convertirla en contenido que la gente quiera ver. Ahora quiero llevar esa mezcla a un equipo,
+        aprender de cerca y aportar lo que ya sé hacer.
+      </p>
+
+      <div class="fu d4 mt-9 flex flex-wrap items-center justify-center gap-3.5">
+        <a href="#proyectos" class="btn btn-ink">Ver proyectos</a>
+        <a href="#contacto" class="btn btn-ghost">
+          <app-icon name="mail" cls="size-[18px]" /> Hablemos de tu equipo
+        </a>
+      </div>
+
+      <p class="fu d55 mt-5 text-sm text-ink/70">
+        <strong class="font-450 text-ink">{{ profile.seeking }}</strong> · {{ profile.level }} · {{ profile.location }}
+      </p>
+    </div>
+
+    <!-- La misma triada, en un carrusel deslizable para pantallas chicas -->
+    <div class="fu d7 mt-10 flex snap-x gap-4 overflow-x-auto pb-2 lg:hidden [&::-webkit-scrollbar]:hidden">
+      <figure class="artifact w-[200px] shrink-0 snap-start p-2.5">
+        <img [src]="imgs.main.src" [alt]="imgs.main.alt" decoding="async" class="h-[230px] w-full rounded-[12px] object-cover" />
+        <figcaption class="figure-cap">Sesión de temporada · Conejo Fotografía</figcaption>
+      </figure>
+      @if (stat; as m) {
+        <figure class="artifact w-[190px] shrink-0 snap-start p-5">
+          <span class="tnum block font-450 text-[24px] tracking-[-.009em]">{{ m.display }}</span>
+          <span class="mt-1.5 block text-[.85rem] text-ink/70">{{ m.label }}</span>
+        </figure>
+      }
+      <figure class="artifact w-[200px] shrink-0 snap-start p-2.5">
+        <img [src]="imgs.logo.src" [alt]="imgs.logo.alt" decoding="async" class="h-[120px] w-full rounded-[12px] object-cover" />
+        <figcaption class="figure-cap">FunkoTown · identidad de marca</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section id="video" class="bg-fog py-16 md:py-24">
+  <div class="container-x">
+    <div appReveal class="mb-10 max-w-[760px] md:mb-16">
+      <h2 class="display-2 text-[clamp(2.5rem,6vw,4rem)]">En <em class="italic">movimiento</em></h2>
+      <p class="mt-5 max-w-[60ch] text-[17px] leading-[1.65] text-ink/75">
+        Reels, cortometrajes y contenido para redes. Distintas duraciones, la misma obsesión por el ritmo
+        y por cuidar el detalle.
+      </p>
+    </div>
+
+    <div>
+      <h3 appReveal class="h-sm mb-6 flex items-center gap-4 text-[clamp(1.15rem,1.7vw,1.4rem)] italic">
+        Reels <span class="h-px flex-1 bg-line" aria-hidden="true"></span>
+      </h3>
+      <div appReveal [appRevealDelay]="100" class="grid max-w-[900px] grid-cols-2 gap-3 sm:grid-cols-3 md:gap-5">
+        @for (v of reels; track v.src; let i = $index) {
+          <button type="button" class="v-card aspect-[9/16]" [class.md:mt-10]="i % 2 === 1"
+                  (click)="openVideo('reels', i)">
+            <img [src]="v.thumb" [alt]="v.posterAlt" loading="lazy" decoding="async">
+            <span class="v-play"><app-icon name="play" /></span>
+            <span class="v-info"><strong>{{ v.title }}</strong><span>{{ v.sub }}</span></span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="mt-14 md:mt-24">
+      <h3 appReveal class="h-sm mb-6 flex items-center gap-4 text-[clamp(1.15rem,1.7vw,1.4rem)] italic">
+        Presentaciones en cine <span class="h-px flex-1 bg-line" aria-hidden="true"></span>
+      </h3>
+
+      <p appReveal [appRevealDelay]="100" class="mb-8 flex max-w-[680px] items-start gap-5 rounded-[16px] bg-paper p-5 text-[15px] leading-[1.55] text-ink/75">
+        <app-icon name="info" cls="mt-0.5 size-5 shrink-0" />
+        Estos videos nacieron en un proyecto universitario de presentaciones en cine. Las tomas del comercial
+        me las entregaron; la edición y el resto del proceso son míos.
+      </p>
+
+      <div appReveal [appRevealDelay]="200" class="films-grid">
+        @for (v of films; track v.src; let i = $index) {
+          <button type="button" class="v-card aspect-[16/9]" (click)="openVideo('films', i)">
+            <img [src]="v.thumb" [alt]="v.posterAlt" loading="lazy" decoding="async">
+            <span class="v-play"><app-icon name="play" /></span>
+            <span class="v-info"><strong>{{ v.title }}</strong><span>{{ v.sub }}</span></span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="mt-14 md:mt-24">
+      <h3 appReveal class="h-sm mb-6 flex items-center gap-4 text-[clamp(1.15rem,1.7vw,1.4rem)] italic">
+        Creación de contenido <span class="h-px flex-1 bg-line" aria-hidden="true"></span>
+      </h3>
+      <div appReveal [appRevealDelay]="100">
+        <div class="flex flex-wrap items-center gap-x-10 gap-y-8">
+          <button type="button" class="v-card aspect-[9/16] w-full max-w-[250px]" (click)="openVideo('content', 0)">
+            <img [src]="content.thumb" [alt]="content.posterAlt" loading="lazy" decoding="async">
+            <span class="v-play"><app-icon name="play" /></span>
+            <span class="v-info"><strong>{{ content.title }}</strong><span>{{ content.sub }}</span></span>
+          </button>
+          <p class="max-w-[44ch] text-[17px] leading-[1.65] text-ink/75">
+            Del concepto a la pieza final: grabación, edición y una vertical lista para redes.
+            Los cupcakes son de <em class="italic">Cheese'C</em>; el concepto, la cámara y la edición son míos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
